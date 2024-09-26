@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Welcome to The Page</h3>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags}} alert-dimissible fade show " role="alert"> 
+    <strong>Message:</strong> {{message}}   
+
+    <span aria-hidden="true">&times</span>
+    </div>
+
+
+
+   {% if user.is_authenticated %}
+   <h3> hello {{ fname }} </h3>
+   successfully logged in
+   {% endif %}
+
+
+    <button type="submit"> <a href="signup">Sign in</a> </button>
+    <br> <br> <br>
+    <button type="submit"><a href="signin"> Sign Up</a></button>
+    <br> <br> <br>
+    <button type="submit"><a href="signout">Sign Out</a></button>
+</body> 
+</html>
