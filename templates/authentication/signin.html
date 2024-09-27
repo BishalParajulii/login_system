@@ -4,15 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <form action="/signin"  method="post">
-        {% csrf_token %}
-        <h4>Sig In </h4>
-        <input type="text" id="username"  name="username" placeholder="username" required> 
-        <br> <br> <br>
-        <input type="password" id="password"  name="password" placeholder="password" required autocomplete="off"><br> <br> <br>
-        <button type="submit">  Sign In </button>
-    </form>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+            <h4 class="text-center mb-4">Sign In</h4>
+            <form action="{% url 'signin' %}" method="post">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required autocomplete="off">
+                </div>
+
+                {% if messages %}
+                    <div class="alert alert-info">
+                        {% for message in messages %}
+                            {{ message }}<br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                <br> <br>
+                <span class="text-center mb-3 d-flex justify-content-center align-items-center"> Do not have a account ? <a href="{% url 'signup' %}">Sign Up</a></span>
+            </form>
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

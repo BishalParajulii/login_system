@@ -2,7 +2,7 @@ from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate , login
+from django.contrib.auth import authenticate , login , logout
 
 # Create your views here.
 def home(request):
@@ -25,7 +25,7 @@ def signin(request):
             context = {
                 'fname': fname,
             }
-            return render(request, 'authentication/index.html', context)
+            return render(request ,'authentication/index.html' , context)
         else:
             messages.error(request, "Invalid credentials. Please try again.")
             return redirect('signin')
@@ -34,7 +34,9 @@ def signin(request):
 
 
 def signout(request):
-    pass
+    logout(request)
+    messages.success(request, "Logged out successfully")
+    return redirect('signin')
 
 def signup(request):
     
@@ -45,6 +47,19 @@ def signup(request):
         email = request.POST['email']
         pass1 = request.POST['password']
         pass2 = request.POST['cpassword']
+
+
+        if pass1 != pass2:
+            messages.error(request , "password didnot match")
+            return redirect('signup')
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists.")
+            return redirect('signup')
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "email already exists.")
+            return redirect('signup')
 
         myuser = User.objects.create_user(username , email , pass1)
         myuser.first_name = fname

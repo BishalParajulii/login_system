@@ -4,21 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow-lg p-3" style="max-width: 400px; width: 100%;">
+            <h4 class="text-center mb-3">Sign Up</h4>
+            <form action="signup" method="post">
+                {% csrf_token %}
+                <div class="mb-2">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="mb-2">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name" required autocomplete="off">
+                </div>
+                <div class="mb-2">
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your last name" required autocomplete="off">
+                </div>
+                <div class="mb-2">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
+                </div>
+                <div class="mb-2">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required autocomplete="off">
+                </div>
+                <div class="mb-2">
+                    <label for="cpassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm your password" required autocomplete="off">
+                </div>
+                {% if messages %}
+                    <div class="alert alert-info">
+                        {% for message in messages %}{{ message }}<br>{% endfor %}
+                    </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+            </form>
+            <div class="text-center mt-3">
+                <p>Already have an account? <a href="signin">Sign In</a></p>
+            </div>
+        </div>
+    </div>
     
-    <form action="signup" method="post">
-        {% csrf_token %}
-        <h4>Sig up </h4>
-        <input type="text" id="username"  name="username" placeholder="username" required> 
-        <br> <br> <br>
-        <input type="text" id="firstname"  name="firstname" placeholder="firstname" required autocomplete="off"><br> <br> <br>
-        <input type="text" id="lastname"  name="lastname" placeholder="lastname" required autocomplete="off"><br> <br> <br>
-        <input type="email" id="email"  name="email" placeholder="email" required autocomplete="off"><br> <br> <br>
-        <input type="password" id="password"  name="password" placeholder="password" required autocomplete="off"><br> <br> <br>
-        <input type="password" id="cpassword"  name="cpassword" placeholder="Confirm password" required autocomplete="off"><br> <br> <br>
-        <button type="submit">  Sign Up </button>
-    </form>
+    
 
-</body> 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

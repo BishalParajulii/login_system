@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import constants as message_constants
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -53,6 +56,12 @@ MIDDLEWARE = [
     
     
 ]
+
+MESSAGE_TAGS = {
+    message_constants.ERROR: 'danger',  # Use 'danger' class for error messages (Bootstrap styling)
+}
+
+
 
 ROOT_URLCONF = "GFG.urls"
 

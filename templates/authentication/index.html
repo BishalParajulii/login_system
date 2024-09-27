@@ -3,29 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Welcome Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h3>Welcome to The Page</h3>
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags}} alert-dimissible fade show " role="alert"> 
-    <strong>Message:</strong> {{message}}   
+    <div class="container text-center mt-5">
+        <h3>Hello!! Have A Good Day</h3>
 
-    <span aria-hidden="true">&times</span>
+        {% comment %} {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %} {% endcomment %}
+
+        {% if user.is_authenticated %}
+            <h3 class="mt-4">Hello, {{ fname }}!</h3>
+            <p>You have successfully logged in.</p>
+            <a href="signout" class="btn btn-danger">Sign Out</a>
+        {% else %}
+            <h3 class="mt-4">Welcome, Guest!</h3>
+            <div class="mt-4">
+                <a href="signin" class="btn btn-primary">Sign In</a>
+                <br><br>
+                <a href="signup" class="btn btn-secondary">Sign Up</a>
+            </div>
+        {% endif %}
     </div>
 
-
-
-   {% if user.is_authenticated %}
-   <h3> hello {{ fname }} </h3>
-   successfully logged in
-   {% endif %}
-
-
-    <button type="submit"> <a href="signup">Sign in</a> </button>
-    <br> <br> <br>
-    <button type="submit"><a href="signin"> Sign Up</a></button>
-    <br> <br> <br>
-    <button type="submit"><a href="signout">Sign Out</a></button>
-</body> 
+    <script src="" async defer></script>
+</body>
 </html>
