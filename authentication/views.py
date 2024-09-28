@@ -60,6 +60,10 @@ def signup(request):
         if User.objects.filter(email=email).exists():
             messages.error(request, "email already exists.")
             return redirect('signup')
+        
+        if not username.isalnum():
+            messages.error(request, "Must be alpha numeric")
+            return redirect('signup')
 
         myuser = User.objects.create_user(username , email , pass1)
         myuser.first_name = fname
